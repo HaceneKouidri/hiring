@@ -46,11 +46,11 @@ Given("I have registered this vehicle into my fleet", function (this: CustomWorl
   this.registerVehicleHandler.execute(cmd);
 });
 
-When("I try to register this vehicle into my fleet", function (this: CustomWorld) {
+When("I try to register this vehicle into my fleet", async function (this: CustomWorld) {
   if (!this.myFleet || !this.vehicle) throw new Error("Missing data");
   try {
     const cmd = new RegisterVehicleCommand(this.myFleet.fleetId, this.vehicle.plateNumber);
-    this.registerVehicleHandler.execute(cmd);
+    await this.registerVehicleHandler.execute(cmd);
   } catch (err: any) {
     this.lastError = err;
   }
@@ -115,9 +115,9 @@ Then("the known location of my vehicle should verify this location", function (t
   assert.equal(location!.altitude, this.lastLocation.altitude);
 });
 
-When("I try to park my vehicle at this location", function (this: CustomWorld) {
-  // same as "I park my vehicle at this location" but we expect an error
+When("I try to park my vehicle at this location", async function (this: CustomWorld) {
   if (!this.myFleet || !this.vehicle || !this.lastLocation) throw new Error("Missing data");
+
   try {
     const cmd = new ParkVehicleCommand(
       this.myFleet.fleetId,
@@ -126,9 +126,9 @@ When("I try to park my vehicle at this location", function (this: CustomWorld) {
       this.lastLocation.longitude,
       this.lastLocation.altitude
     );
-    this.parkVehicleHandler.execute(cmd);
+    await this.parkVehicleHandler.execute(cmd);
   } catch (err: any) {
-    this.lastError = err;
+    this.lastError = err; // Stocke l'erreur pour la vérifier dans l'étape suivante
   }
 });
 

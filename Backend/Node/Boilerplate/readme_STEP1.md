@@ -6,3 +6,5 @@ To install the project, you just have to run `yarn install` to get all the depen
 
 # Running the tests
 After installing the dependencies you can run the tests with this command `yarn test`.
+
+

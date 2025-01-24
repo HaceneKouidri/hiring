@@ -1,22 +1,21 @@
 import { RegisterVehicleCommand } from "../Commands/RegisterVehicleCommand";
-import { FleetRepository } from "../../Infra/InMemoryFleetRepository";
+import { FleetRepository } from "../../Domain/FleetRepository";
 import { Fleet } from "../../Domain/Fleet";
 import { Vehicle } from "../../Domain/Vehicle";
 
 export class RegisterVehicleHandler {
   constructor(private readonly fleetRepo: FleetRepository) {}
 
-  public execute(command: RegisterVehicleCommand): void {
-    let fleet = this.fleetRepo.findById(command.fleetId);
+  public async execute(command: RegisterVehicleCommand): Promise<void> {
+    let fleet = await this.fleetRepo.findById(command.fleetId);
     if (!fleet) {
-      // If the fleet does not exist yet, we can create it or throw.
-      // For simplicity: create it automatically
+      // Si la flotte n'existe pas encore, on la crée automatiquement
       fleet = new Fleet(command.fleetId);
     }
 
     const vehicle = new Vehicle(command.plateNumber);
     fleet.registerVehicle(vehicle);
 
-    this.fleetRepo.save(fleet);
+    await this.fleetRepo.save(fleet);
   }
 }

@@ -121,7 +121,7 @@ Please wrap the part 1 into a complete application. We want:
 ./fleet localize-vehicle <fleetId> <vehiclePlateNumber> lat lng [alt]
 ```
 
-2. To persist fleet and vehicles into a real repository/database.
+2. To persist fosleet and vehicles into a real repitory/database.
 
 #### Guidelines
 
