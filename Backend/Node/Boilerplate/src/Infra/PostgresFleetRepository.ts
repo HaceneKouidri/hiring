@@ -3,10 +3,30 @@ import { FleetRepository } from "../Domain/FleetRepository";
 import { Vehicle } from "../Domain/Vehicle";
 import { Location } from "../Domain/Location";
 import { pool } from "./database";
+import { v4 as uuidv4 } from "uuid";
+
 
 export class PostgresFleetRepository implements FleetRepository {
   constructor() {
     console.log('PostgresFleetRepository instancié');
+  }
+  async createFleet(userId: string): Promise<string> {
+    const client = await pool.connect();
+    const fleetId = uuidv4(); 
+    try {
+      await client.query(
+        `INSERT INTO fleets (fleet_id, user_id) VALUES ($1, $2)
+         ON CONFLICT (fleet_id) DO NOTHING`,
+        [fleetId, userId]
+      );
+      return fleetId; 
+
+    } catch (error) {
+      console.error("Erreur lors de la création de la flotte :", error);
+      throw error;
+    } finally {
+      client.release();
+    }
   }
   async findById(fleetId: string): Promise<Fleet | undefined> {
     const client = await pool.connect();

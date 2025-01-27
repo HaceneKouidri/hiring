@@ -32,17 +32,14 @@ Cette application permet de gérer des flottes de véhicules, d'enregistrer des 
 
 #### Créer une flotte
 
-- Utilisez un UUID valide pour représenter la flotte.
-- Vous pouvez générer un UUID avec la commande suivante :
+La commande create permet de créer une flotte pour un utilisateur donné. 
 
   ```bash
-  node -e "console.log(require('uuid').v4())"
+  ./fleet create <userId> [fleetId]
   ```
-
-  Exemple :
-
-  ```
-  550e8400-e29b-41d4-a716-446655440000
+ou 
+  ```bash
+ ts-node .\fleet create <userId> [fleetId]
   ```
 
 #### Enregistrer un véhicule
@@ -50,40 +47,24 @@ Cette application permet de gérer des flottes de véhicules, d'enregistrer des 
 Exécutez la commande suivante pour enregistrer un véhicule dans une flotte :
 
 ```bash
-npm run fleet:register-vehicle <fleetId> <vehiclePlateNumber>
+./fleet register-vehicle <fleetId> <vehiclePlateNumber>
 ```
-
-Exemple :
-
+ou
 ```bash
-npm run fleet:register-vehicle -- 550e8400-e29b-41d4-a716-446655440000 ABC-123
+ts-node .\fleet.ts register-vehicle <fleetId> <vehiclePlateNumber>
 ```
-
-Résultat attendu :
-
-```
-Véhicule ABC-123 enregistré dans la flotte 550e8400-e29b-41d4-a716-446655440000
-```
-
----
 
 ### Localiser un véhicule
 
 Pour localiser un véhicule avec des coordonnées GPS, utilisez la commande suivante :
 
 ```bash
-npm run fleet:park-vehicle <fleetId> <vehiclePlateNumber> <latitude> <longitude> [altitude]
+./fleet localize-vehicle <fleetId> <vehiclePlateNumber> lat lng [alt]
 ```
-
-Exemple :
+ou
 
 ```bash
-npm run fleet:park-vehicle -- 550e8400-e29b-41d4-a716-446655440000 ABC-123 48.8566 2.3522 35
+ts-node .\fleet localize-vehicle <fleetId> <vehiclePlateNumber> lat lng [alt]
 ```
 
-Résultat attendu :
-
-```
-Véhicule ABC-123 localisé à (48.8566, 2.3522, 35) dans la flotte 550e8400-e29b-41d4-a716-446655440000
-```
 

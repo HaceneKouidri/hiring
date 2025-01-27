@@ -22,7 +22,8 @@ export async function initDatabase() {
     // Création de la table "fleets" (pour les flottes)
     await client.query(`
       CREATE TABLE IF NOT EXISTS fleets (
-        fleet_id UUID PRIMARY KEY
+        fleet_id UUID PRIMARY KEY,
+        user_id VARCHAR(255)
       );
     `);
 
