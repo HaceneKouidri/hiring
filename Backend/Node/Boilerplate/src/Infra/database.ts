@@ -5,12 +5,10 @@ import { Pool } from "pg";
 import dotenv from "dotenv";
 dotenv.config();
 // Configurer la connexion PostgreSQL
+console.log("Connection string:", process.env.DATABASE_URL);
+
 export const pool = new Pool({
-  user: 'postgres', // Nom d'utilisateur PostgreSQL
-  host: 'localhost', // Hôte du serveur PostgreSQL
-  database: 'Full_db', // Nom de la base de données
-  password: 'admin', // Mot de passe de l'utilisateur PostgreSQL
-  port: 5432, // Port PostgreSQL (par défaut 5432)
+  connectionString: process.env.DATABASE_URL
 });
 
 // Fonction pour initialiser la base de données

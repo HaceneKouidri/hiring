@@ -35,11 +35,11 @@ Cette application permet de gérer des flottes de véhicules, d'enregistrer des 
 La commande create permet de créer une flotte pour un utilisateur donné. 
 
   ```bash
-  ./fleet create <userId> [fleetId]
+  ./fleet.ts create <userId> [fleetId]
   ```
 ou 
   ```bash
- ts-node .\fleet create <userId> [fleetId]
+ ts-node .\fleet.ts create <userId> [fleetId]
   ```
 
 #### Enregistrer un véhicule
@@ -47,7 +47,7 @@ ou
 Exécutez la commande suivante pour enregistrer un véhicule dans une flotte :
 
 ```bash
-./fleet register-vehicle <fleetId> <vehiclePlateNumber>
+./fleet.ts register-vehicle <fleetId> <vehiclePlateNumber>
 ```
 ou
 ```bash
@@ -59,12 +59,12 @@ ts-node .\fleet.ts register-vehicle <fleetId> <vehiclePlateNumber>
 Pour localiser un véhicule avec des coordonnées GPS, utilisez la commande suivante :
 
 ```bash
-./fleet localize-vehicle <fleetId> <vehiclePlateNumber> lat lng [alt]
+./fleet.ts localize-vehicle <fleetId> <vehiclePlateNumber> lat lng [alt]
 ```
 ou
 
 ```bash
-ts-node .\fleet localize-vehicle <fleetId> <vehiclePlateNumber> lat lng [alt]
+ts-node .\fleet.ts localize-vehicle <fleetId> <vehiclePlateNumber> lat lng [alt]
 ```
 
 
